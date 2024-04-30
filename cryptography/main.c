@@ -22,7 +22,7 @@ int main () {
 		if(a==1){
 			char result[1000];
 			reverse(text, result);
-			printf("%s\n", result);
+			printf("Result: %s\n", result);
 		}
 		if(a==2){
 			printf("Your key:\n");
@@ -32,7 +32,7 @@ int main () {
 			fgets(key, 1000, stdin);
 			char result[1000];
 			vigenere_encrypt(key, text, result);
-			printf("%s\n", result);
+			printf("Result: %s\n", result);
 		}
 		if(a==3){
 			bool bytes[strlen(text)+1][8];
@@ -49,7 +49,7 @@ int main () {
 			unsigned char result[1000];
 			bit_encrypt(text, result);
 			for(int i=0; i < stringlen(result);i++) {
-				printf("%c ", result[i]);
+				printf("%02x ", result[i]);
 			}
 			printf("\n");
 		}
@@ -63,7 +63,7 @@ int main () {
 		if(a==1){
 			char result[1000];
 			reverse(text, result);
-			printf("%s\n", result);
+			printf("Result: %s\n", result);
 		}
 		if(a==2){
 			printf("Your key:\n");
@@ -73,7 +73,7 @@ int main () {
 			fgets(key, 1000, stdin);
 			char result[1000];
 			vigenere_decrypt(key, text, result);
-			printf("%s\n", result);
+			printf("Result: %s\n", result);
 		}
 		if(a==3){
 			unsigned char text1[1000];
@@ -82,7 +82,7 @@ int main () {
 			}
 			unsigned char result[1000];
 			bit_decrypt(text1, result);
-			printf("%s\n", result);
+			printf("Result: %s\n", result);
 		}
 	}
     
