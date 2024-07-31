@@ -1,0 +1,13 @@
+johny 5000
+bob 2000
+carl 1000
+anna 3000
+dima 5000
+vova 1000
+anton 500
+jain 10
+chan 90000
+obelix 677
+stepan 12000
+ivan 13
+zheka 14567

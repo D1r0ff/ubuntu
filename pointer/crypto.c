@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "crypto.h"
 
 int stringlen(const unsigned char* text) {
     int i=0;
@@ -12,24 +13,27 @@ int stringlen(const unsigned char* text) {
     return i;
 }
 
-void reverse(const char* text, char* result) {
+char* reverse(const char* text) {
     int lenght = strlen(text);
     char* result = malloc(lenght * sizeof(char));
     for(int i=0; i<strlen(text); i++) {
-        *(result+i)=toupper(*(text+lenght-1-i));
-        //result[i]=text[strlen(text)-1-i];
+        *(result+i)=*(text+lenght-1-i);
     }
+    return result;
 }
 
-void vigenere_encrypt(const char* key,const char* text, char* result) {
+
+char* vigenere_encrypt(const char* key, const char* text) {
     int text_int=0, j=0, key_int=0;
+    int lenght = strlen(text);
+    char* result = malloc(lenght * sizeof(char));
     for(int i=0; i<strlen(text); i++) {
         text_int=(int)text[i];
         if(text_int>96 && text_int < 123) {
             text_int=text_int-32;
         }
         if (text_int < 65 || text_int > 90) {
-            result[i]=(char)text_int;
+            *(result+i)=(char)text_int;
             continue;
         }
         key_int=(int)key[j];
@@ -47,17 +51,20 @@ void vigenere_encrypt(const char* key,const char* text, char* result) {
         if(text[i]==' ') {
             text_int=32;
         }
-        result[i]=(char)text_int;
+        *(result+i)=(char)text_int;
     }
+    return result;
 }
  
  
-void vigenere_decrypt(const char* key, const char* text, char* result) {
+char* vigenere_decrypt(const char* key, const char* text) {
     int text_int=0, j=0, key_int=0;
+    int lenght = strlen(text);
+    char* result = malloc(lenght * sizeof(char));
     for(int i=0; i<strlen(text); i++) {
         text_int=(int)text[i];
         if (text_int < 65 || text_int > 90) {
-            result[i]=(char)text_int;
+            *(result+i)=(char)text_int;
             continue;
         }
         key_int=(int)key[j];
@@ -75,61 +82,14 @@ void vigenere_decrypt(const char* key, const char* text, char* result) {
         if (text_int < 65) {
             text_int += 26;
         }
-        result[i]=(char)text_int;
+        *(result+i)=(char)text_int;
     }
+    return result;
 }
 
-// void encode_char(const char character, bool bits[8]) {
-//     int bit_values[8] = {128, 64, 32, 16, 8, 4, 2 ,1};
-//     int charValue = (int)character;
-//     for(int i=0; i<8; i++) {
-//         bits[i]=0;
-//         if(bit_values[i]<=charValue) {
-//             bits[i]=1;
-//             charValue-=bit_values[i];
-//         }
-//     }
-// }
-
-// char decode_char(const bool bits[8]) {
-//     int a=0;
-//     int bit_values[8] = {128, 64, 32, 16, 8, 4, 2 ,1};
-//     for(int i=0; i<8; i++) {
-//         if(bits[i]==1) {
-//             a+=bit_values[i];
-//         }
-//     }
-//     return (char)a;
-// }
-
-void encode_string(const char string[], bool bytes[][8]) {
-    int bit_values[8] = {128, 64, 32, 16, 8, 4, 2 ,1};
-    for (int j=0; j<strlen(string); j++) {
-        int charValue = (int)string[j];
-        for(int i=0; i<8; i++) {
-            bytes[j][i]=0;
-            if(bit_values[i]<=charValue) {
-                bytes[j][i]=1;
-                charValue-=bit_values[i];
-            }
-        }
-    }
-}
-
-// void decode_string(const int rows, bool bytes[][8], char string[]) {
-//     int bit_values[8] = {128, 64, 32, 16, 8, 4, 2 ,1};
-//     for(int j=0; j<rows-1;j++) {
-//         int a=0;
-//         for(int i=0; i<8; i++) {
-//             if(bytes[j][i]==1) {
-//                 a+=bit_values[i];
-//             }
-//         }
-//         string[j]=(char)a;
-//     }
-// }
-
-void bit_encrypt(const char* text, unsigned char* result) {
+unsigned char* bit_encrypt(const char* text) {
+    int lenght = strlen(text);
+    unsigned char* result = malloc(lenght * sizeof(char));
     int bit_values[8] = {128, 64, 32, 16, 8, 4, 2 ,1};
     int bits[8];
     for (int j=0; j<strlen(text); j++) {
@@ -159,11 +119,14 @@ void bit_encrypt(const char* text, unsigned char* result) {
                 a+=bit_values[i];
             }
         }
-        result[j]=(char)a;
+        *(result+j)=(char)a;
     }
+    return result;
 }
 
-void bit_decrypt(const unsigned char* text, unsigned char* result) {
+char* bit_decrypt(const unsigned char* text) {
+    int lenght = stringlen(text);
+    char* result = malloc(lenght * sizeof(char));
     int bit_values[8] = {128, 64, 32, 16, 8, 4, 2 ,1};
     int bits[8];
    
@@ -194,8 +157,8 @@ void bit_decrypt(const unsigned char* text, unsigned char* result) {
                 a+=bit_values[i];
             }
         }
-        result[j]=(unsigned char)a;
+        *(result+j)=(unsigned char)a;
         
     }
-
+    return result;
 }
