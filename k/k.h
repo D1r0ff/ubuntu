@@ -6,7 +6,7 @@
 
 #ifndef _K_H
 #define _K_H
-#include <stdbool.h>
+
 #define SIZE 4
 
 struct game {

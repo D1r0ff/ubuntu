@@ -74,7 +74,15 @@ int main(int argc, char* argv[]){
         }
 
         update(&game, dy, dx);
-        add_random_tile(&game);
+        for(int i=0; i<SIZE; i++){
+            for(int j=0; j<SIZE; j++){
+                if(game.board[i][j]==' '){
+                    add_random_tile(&game);
+                    j=SIZE;
+                    i=SIZE;
+                }
+            }
+        }
         print_board(&game, dy, dx);
 
         if(is_game_won(game)==true){
