@@ -5,9 +5,10 @@ anna 3000
 dima 5000
 vova 1000
 anton 500
-jain 10
+jain 1
 chan 90000
 obelix 677
 stepan 12000
 ivan 13
 zheka 14567
+

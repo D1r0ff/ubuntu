@@ -6,7 +6,7 @@
 #include "k.h"
 #include "hof.h"
 
-int main(){
+int main(int argc, char* argv[]){
     srand(time(NULL));
     struct game game = {
         .board = {
@@ -20,17 +20,18 @@ int main(){
 
     struct player list[10];
 
-    printf("Enter your name\n");
-    char name[30];
-    fgets(name, 30, stdin);
-    for(int i=0; i<strlen(name); i++){
-        if(name[i]=='\n'){
-            name[i]='\0';
-        }
-    }
+    // printf("Enter your name\n");
+    // char name[30];
+    // fgets(name, 30, stdin);
+    // for(int i=0; i<strlen(name); i++){
+    //     if(name[i]=='\n'){
+    //         name[i]='\0';
+    //     }
+    // }
 
     struct player player;
-    strcpy(player.name, name);
+    //strcpy(player.name, name);
+    strcpy(player.name, argv[1]);
     
     add_random_tile(&game);
     add_random_tile(&game);
