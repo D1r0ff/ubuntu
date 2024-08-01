@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <stdbool.h>
 #include "k.h"
 
 void add_random_tile(struct game *game){

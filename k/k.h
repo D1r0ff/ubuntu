@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <stdbool.h>
+
 #ifndef _K_H
 #define _K_H
 #include <stdbool.h>
